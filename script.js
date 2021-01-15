@@ -43,11 +43,12 @@ const quizData = [
 
 const answerEls = document.querySelectorAll('.answer');
 const questionEl = document.getElementById('question');
-
+const quiz = document.getElementById('quiz');
 const a_text = document.getElementById("a_text");
 const b_text = document.getElementById("b_text");
 const c_text = document.getElementById("c_text");
 const d_text = document.getElementById("d_text");
+const answersEls =  document.querySelectorAll('.answer');
 
 const submit = document.querySelector('button')
 
@@ -58,6 +59,7 @@ let score = 0;
 loadQuiz();
 
 function loadQuiz(){
+    deselectAnswer();
     const currentQuizData = quizData[currentQuiz];
 
     questionEl.innerText = currentQuizData.question;
@@ -69,7 +71,7 @@ function loadQuiz(){
 }
 
 function getSelected(){
-    const answersEls =  document.querySelectorAll('.answer');
+    
     answersEls.forEach(answerEl=>{
         if(answerEl.checked){
             answer = answerEl.id;
@@ -78,6 +80,14 @@ function getSelected(){
 
     return answer;
 }
+
+function deselectAnswer(){
+    answersEls.forEach(answerEl=>{
+        answerEl.checked= false;
+        }
+    )
+}
+
 
 submit.addEventListener('click', ()=>{
     const answer = getSelected();
@@ -93,13 +103,10 @@ submit.addEventListener('click', ()=>{
         loadQuiz();
     }else{
         //TODO show result
-    alert("You Finished!")
+    quiz.innerHTML = `<h3>You answered correctly at ${score}/${quizData.length} questions</h3>
+                    <button onclick = "location.reload()">Reload</button>`
     }
 
     }
 
-
-
-
-  
 })

@@ -35,6 +35,11 @@ body {
     overflow: hidden;
 }
 
+#quiz h3{
+    padding: 10px;
+    color: #300308;
+}
+
 .question-text {
     padding: 40px;
 }
