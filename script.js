@@ -52,6 +52,7 @@ const d_text = document.getElementById("d_text");
 const submit = document.querySelector('button')
 
 let currentQuiz = 0;
+let answer = undefined;
 let score = 0;
 
 loadQuiz();
@@ -67,7 +68,38 @@ function loadQuiz(){
     d_text.innerText = currentQuizData.d;
 }
 
+function getSelected(){
+    const answersEls =  document.querySelectorAll('.answer');
+    answersEls.forEach(answerEl=>{
+        if(answerEl.checked){
+            answer = answerEl.id;
+        }
+    })
+
+    return answer;
+}
+
 submit.addEventListener('click', ()=>{
+    const answer = getSelected();
+
+    if(answer){
+        if(answer === quizData[currentQuiz].correct){
+            score++;
+        }
+
+
     currentQuiz++;
-    loadQuiz();
+        if(currentQuiz < quizData.length){
+        loadQuiz();
+    }else{
+        //TODO show result
+    alert("You Finished!")
+    }
+
+    }
+
+
+
+
+  
 })

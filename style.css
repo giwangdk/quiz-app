@@ -53,6 +53,10 @@ ul li {
     margin: 6px 0;
 }
 
+ul li label {
+    cursor: pointer;
+}
+
 button {
     background: #0b6866;
     display: block;
